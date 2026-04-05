@@ -1,0 +1,39 @@
+﻿@model List<Entity.Administrador.eUsuario>
+
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<h2>Usuario</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Sucursal</th>
+        <th>Activo</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Apellido</td>
+            <td>@item.Email</td>
+            <td>@(item.Rol != null ? item.Rol.Nombre : "")</td>
+            <td>@(item.Sucursal != null ? item.Sucursal.Nombre : "")</td>
+            <td>@item.Activo</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,39 @@
+﻿@model List<Entity.General.eCliente>
+
+@{
+    ViewBag.Title = "Cliente";
+}
+
+<h2>Cliente</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>RFC</th>
+        <th>Tipo</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Apellido</td>
+            <td>@item.Telefono</td>
+            <td>@item.Email</td>
+            <td>@item.RTN</td>
+            <td>@item.Tipo</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

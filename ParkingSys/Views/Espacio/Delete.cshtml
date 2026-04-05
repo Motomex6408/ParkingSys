@@ -1,0 +1,37 @@
+﻿@model Entity.Estructura.eEspacio
+
+@{
+    ViewBag.Title = "Eliminar Espacio";
+}
+
+<h2>Eliminar Espacio</h2>
+
+<h4>¿Estás seguro que deseas eliminar esto?</h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Zona</dt>
+        <dd>@(Model.Zona != null ? Model.Zona.Nombre : "")</dd>
+
+        <dt>Tipo de Vehículo</dt>
+        <dd>@(Model.TipoVehiculo != null ? Model.TipoVehiculo.Nombre : "")</dd>
+
+        <dt>Código</dt>
+        <dd>@Model.Codigo</dd>
+
+        <dt>Disponible</dt>
+        <dd>@Model.Disponible</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    }
+
+    <br />
+    @Html.ActionLink("Cancelar", "Index")
+</div>
