@@ -1,0 +1,17 @@
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Entity.dll.config
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Entity.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Entity.pdb
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\EntityFramework.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\EntityFramework.SqlServer.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\System.Data.Common.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\System.Data.SqlClient.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\EntityFramework.xml
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\EntityFramework.SqlServer.xml
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Release\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\obj\Release\Entity.dll
+C:\Computacion_En_La_Nube\ParkingSys\Entity\obj\Release\Entity.pdb

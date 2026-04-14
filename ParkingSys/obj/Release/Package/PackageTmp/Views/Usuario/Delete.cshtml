@@ -1,0 +1,43 @@
+﻿@model Entity.Administrador.eUsuario
+
+@{
+    ViewBag.Title = "Eliminar Usuario";
+}
+
+<h2>Eliminar Usuario</h2>
+
+<h4>¿Estás seguro que deseas eliminar esto?</h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Model.Nombre</dd>
+
+        <dt>Apellido</dt>
+        <dd>@Model.Apellido</dd>
+
+        <dt>Correo</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Rol</dt>
+        <dd>@(Model.Rol != null ? Model.Rol.Nombre : "")</dd>
+
+        <dt>Sucursal</dt>
+        <dd>@(Model.Sucursal != null ? Model.Sucursal.Nombre : "")</dd>
+
+        <dt>Activo</dt>
+        <dd>@Model.Activo</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    }
+
+    <br />
+    @Html.ActionLink("Cancelar", "Index")
+</div>

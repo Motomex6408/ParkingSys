@@ -4,8 +4,22 @@ using System.Web.Mvc;
 
 namespace AppG2.Controllers
 {
+
+
     public class ClienteController : Controller
     {
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "User");
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         fCliente factory { get; set; }
 
         public ClienteController()

@@ -6,6 +6,17 @@ namespace AppG2.Controllers
 {
     public class VehiculoController : Controller
     {
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "User");
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         fVehiculo factory { get; set; }
 
         public VehiculoController()
@@ -39,6 +50,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "VEHICULO", "CREAR", "Se creo un nuevo vehiculo.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -77,6 +94,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "VEHICULO", "EDITAR", "Se edito un nuevo vehiculo.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -112,6 +135,12 @@ namespace AppG2.Controllers
 
             if (factory.success)
             {
+                if (Session["IdUsuario"] != null)
+                {
+                    int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                    fAuditoria auditoria = new fAuditoria();
+                    auditoria.save(idUsuario, "VEHICULO", "ELIMINAR", "Se elimino un nuevo vehiculo.");
+                }
                 return RedirectToAction("Index");
             }
 

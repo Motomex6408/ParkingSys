@@ -1,0 +1,35 @@
+﻿@model List<Entity.Estructura.eZona>
+
+@{
+    ViewBag.Title = "Zona";
+}
+
+<h2>Zona</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Sucursal</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Nivel</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(item.Sucursal != null ? item.Sucursal.Nombre : "")</td>
+            <td>@item.Nombre</td>
+            <td>@item.Descripcion</td>
+            <td>@item.Nivel</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

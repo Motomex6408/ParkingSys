@@ -1,0 +1,46 @@
+﻿@model List<Entity.Administrador.eAuditoria>
+
+@{
+    ViewBag.Title = "Auditoría";
+}
+
+<h2>Auditoría</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Historial de movimientos del sistema</h5>
+    </div>
+    <div class="card-block">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Módulo</th>
+                    <th>Acción</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                </tr>
+
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(item.Usuario != null ? item.Usuario.Nombre + " " + item.Usuario.Apellido : "")</td>
+                            <td>@item.Modulo</td>
+                            <td>@item.Accion</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Fecha</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">No hay registros de auditoría.</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

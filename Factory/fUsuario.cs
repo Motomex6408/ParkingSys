@@ -117,6 +117,7 @@ namespace Factory
                         obj.Nombre = entity.Nombre;
                         obj.Apellido = entity.Apellido;
                         obj.Email = entity.Email;
+                        obj.Phone = entity.Phone;
                         obj.Activo = entity.Activo;
 
                         
@@ -169,6 +170,27 @@ namespace Factory
                 success = false;
                 message = ex.Message;
             }
+        }
+
+        public eUsuario login(string access, string password)
+        {
+            eUsuario user = db.Usuario
+                .Include("Rol")
+                .Include("Sucursal")
+                .Where(x => (x.Nombre == access || x.Email == access) && x.Activo == true)
+                .FirstOrDefault();
+
+            if (user != null)
+            {
+                bool ok = PasswordHash.VerifyPassword(password, user.Password);
+
+                if (ok)
+                {
+                    return user;
+                }
+            }
+
+            return null;
         }
 
         public List<eRol> toListRol()

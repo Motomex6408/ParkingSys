@@ -1,0 +1,38 @@
+﻿@model List<Entity.Facturacion.ePago>
+
+@{
+    ViewBag.Title = "Pago";
+}
+
+<h2>Pago</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>Factura</th>
+        <th>Método de Pago</th>
+        <th>Monto</th>
+        <th>Fecha de Pago</th>
+        <th>Referencia</th>
+        <th>Estado</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(item.Factura != null ? item.Factura.Folio : "")</td>
+            <td>@(item.MetodoPago != null ? item.MetodoPago.Nombre : "")</td>
+            <td>@item.Monto</td>
+            <td>@item.FechaPago</td>
+            <td>@item.Referencia</td>
+            <td>@item.Estado</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

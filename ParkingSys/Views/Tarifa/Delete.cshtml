@@ -1,0 +1,45 @@
+﻿@model Entity.Administrador.eTarifa
+
+@{
+    ViewBag.Title = "Eliminar Tarifa";
+}
+
+<h2>Eliminar Tarifa</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Confirmar eliminación</h5>
+    </div>
+    <div class="card-block">
+        <dl class="dl-horizontal">
+            <dt>Sucursal</dt>
+            <dd>@(Model.Sucursal != null ? Model.Sucursal.Nombre : "")</dd>
+
+            <dt>Tipo Vehículo</dt>
+            <dd>@(Model.TipoVehiculo != null ? Model.TipoVehiculo.Nombre : "")</dd>
+
+            <dt>Nombre</dt>
+            <dd>@Model.Nombre</dd>
+
+            <dt>Precio Hora</dt>
+            <dd>@Model.PrecioHora</dd>
+
+            <dt>Precio Día</dt>
+            <dd>@Model.PrecioDia</dd>
+
+            <dt>Precio Mes</dt>
+            <dd>@Model.PrecioMes</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="text-right">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>

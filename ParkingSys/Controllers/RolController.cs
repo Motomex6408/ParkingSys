@@ -6,6 +6,17 @@ namespace AppG2.Controllers
 {
     public class RolController : Controller
     {
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "User");
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         fRol factory { get; set; }
 
         public RolController()
@@ -38,6 +49,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "ROL", "CREAR", "Se creó un nuevo rol.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -63,6 +80,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "ROL", "EDITAR", "Se edito un nuevo rol.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -86,6 +109,12 @@ namespace AppG2.Controllers
 
             if (factory.success)
             {
+                if (Session["IdUsuario"] != null)
+                {
+                    int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                    fAuditoria auditoria = new fAuditoria();
+                    auditoria.save(idUsuario, "ROL", "ELIMINAR", "Se elimino un nuevo rol.");
+                }
                 return RedirectToAction("Index");
             }
 

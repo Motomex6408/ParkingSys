@@ -83,6 +83,18 @@
     <Compile Include="Migrations\202604052334531_Cuarta.Designer.cs">
       <DependentUpon>202604052334531_Cuarta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202604080342197_Quinta.cs" />
+    <Compile Include="Migrations\202604080342197_Quinta.Designer.cs">
+      <DependentUpon>202604080342197_Quinta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202604131739158_Sexta.cs" />
+    <Compile Include="Migrations\202604131739158_Sexta.Designer.cs">
+      <DependentUpon>202604131739158_Sexta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202604131923582_Septima.cs" />
+    <Compile Include="Migrations\202604131923582_Septima.Designer.cs">
+      <DependentUpon>202604131923582_Septima.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -108,6 +120,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202604052334531_Cuarta.resx">
       <DependentUpon>202604052334531_Cuarta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604080342197_Quinta.resx">
+      <DependentUpon>202604080342197_Quinta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604131739158_Sexta.resx">
+      <DependentUpon>202604131739158_Sexta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604131923582_Septima.resx">
+      <DependentUpon>202604131923582_Septima.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

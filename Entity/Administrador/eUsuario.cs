@@ -45,6 +45,11 @@ namespace Entity.Administrador
 
         [Required]
         [StringLength(100)]
+        [Display(Name = "Telefono")]
+        public string Phone { get; set; }
+
+        [Required]
+        [StringLength(100)]
         [Display(Name = "Clave")]
         public string Password { get; set; }
 

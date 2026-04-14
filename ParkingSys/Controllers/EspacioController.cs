@@ -6,6 +6,18 @@ namespace AppG2.Controllers
 {
     public class EspacioController : Controller
     {
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "User");
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         fEspacio factory { get; set; }
 
         public EspacioController()

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -178,14 +181,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuditoriaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EspacioController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KardexController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MetodoPagoController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
+    <Compile Include="Controllers\TarifaController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
@@ -195,18 +206,239 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\rptUser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptUser.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\animate.css\css\animate.css" />
+    <Content Include="assets\css\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\css\chartist\chartist.css" />
+    <Content Include="assets\css\component.css" />
+    <Content Include="assets\css\font-awesome-n.min.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\ionicons.css" />
+    <Content Include="assets\css\jquery.mCustomScrollbar.css" />
+    <Content Include="assets\css\linearicons.css" />
+    <Content Include="assets\css\morris.js\css\morris.css" />
+    <Content Include="assets\css\simple-line-icons.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\style.min.css" />
+    <Content Include="assets\icon\fa-brands-400.svg" />
+    <Content Include="assets\icon\fa-regular-400.svg" />
+    <Content Include="assets\icon\fa-solid-900.svg" />
+    <Content Include="assets\icon\feather\css\feather.css" />
+    <Content Include="assets\icon\feather\fonts\feather.svg" />
+    <Content Include="assets\icon\font-awesome\css\font-awesome.css" />
+    <Content Include="assets\icon\font-awesome\css\font-awesome.min.css" />
+    <Content Include="assets\icon\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\icon\fontawesome-webfont.svg" />
+    <Content Include="assets\icon\icofont\css\icofont.css" />
+    <Content Include="assets\icon\ionicons.svg" />
+    <Content Include="assets\icon\Linearicons-Free.svg" />
+    <Content Include="assets\icon\Simple-Line-Icons.svg" />
+    <Content Include="assets\icon\themify-icons\fonts\themify.svg" />
+    <Content Include="assets\icon\themify-icons\themify-icons.css" />
+    <Content Include="assets\images\auth\logo-dark.png" />
+    <Content Include="assets\images\auth\Logo-small-bottom.png" />
+    <Content Include="assets\images\auth\logo.png" />
+    <Content Include="assets\images\avatar-1.jpg" />
+    <Content Include="assets\images\avatar-2.jpg" />
+    <Content Include="assets\images\avatar-3.jpg" />
+    <Content Include="assets\images\avatar-4.jpg" />
+    <Content Include="assets\images\avatar-5.jpg" />
+    <Content Include="assets\images\breadcrumb-bg.jpg" />
+    <Content Include="assets\images\browser\chrome.png" />
+    <Content Include="assets\images\browser\firefox.png" />
+    <Content Include="assets\images\browser\ie.png" />
+    <Content Include="assets\images\browser\opera.png" />
+    <Content Include="assets\images\browser\safari.png" />
+    <Content Include="assets\images\favicon.ico" />
+    <Content Include="assets\images\logo-blue.png" />
+    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\mega-menu\01.jpg" />
+    <Content Include="assets\images\mega-menu\02.jpg" />
+    <Content Include="assets\images\mega-menu\03.jpg" />
+    <Content Include="assets\images\select-arrow.png" />
+    <Content Include="assets\images\user-bg.jpg" />
+    <Content Include="assets\images\widget\AUSTRALIA.jpg" />
+    <Content Include="assets\images\widget\BRAZIL.jpg" />
+    <Content Include="assets\images\widget\DIGITALPEN.jpg" />
+    <Content Include="assets\images\widget\GERMANY.jpg" />
+    <Content Include="assets\images\widget\IPAD.jpg" />
+    <Content Include="assets\images\widget\PHONE1.jpg" />
+    <Content Include="assets\images\widget\PHONE2.jpg" />
+    <Content Include="assets\images\widget\PHONE3.jpg" />
+    <Content Include="assets\images\widget\PHONE4.jpg" />
+    <Content Include="assets\images\widget\prod1.jpg" />
+    <Content Include="assets\images\widget\prod2.jpg" />
+    <Content Include="assets\images\widget\prod3.jpg" />
+    <Content Include="assets\images\widget\prod4.jpg" />
+    <Content Include="assets\images\widget\TABLET.jpg" />
+    <Content Include="assets\images\widget\UK.jpg" />
+    <Content Include="assets\images\widget\USA.jpg" />
+    <Content Include="assets\images\widget\wather2bottom.png" />
+    <Content Include="assets\images\widget\wather2m.png" />
+    <Content Include="assets\images\widget\wather2star1.png" />
+    <Content Include="assets\images\widget\wather2star2.png" />
+    <Content Include="assets\images\widget\watherbottom.png" />
+    <Content Include="assets\images\widget\wathernature.png" />
+    <Content Include="assets\images\widget\watherstar1.png" />
+    <Content Include="assets\images\widget\watherstar2.png" />
+    <Content Include="assets\images\widget\wsm-3-star-1.png" />
+    <Content Include="assets\images\widget\wsm-3-star-2.png" />
+    <Content Include="assets\js\animation.js" />
+    <Content Include="assets\js\bootstrap-growl.min.js" />
+    <Content Include="assets\js\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\js\classie.js" />
+    <Content Include="assets\js\color-json-common-page.js" />
+    <Content Include="assets\js\common-pages.js" />
+    <Content Include="assets\js\common-pages.min.js" />
+    <Content Include="assets\js\counter.js" />
+    <Content Include="assets\js\float\curvedLines.js" />
+    <Content Include="assets\js\float\jquery.flot.categories.js" />
+    <Content Include="assets\js\float\jquery.flot.js" />
+    <Content Include="assets\js\float\jquery.flot.pie.js" />
+    <Content Include="assets\js\float\jquery.flot.tooltip.min.js" />
+    <Content Include="assets\js\jquery-slimscroll\jquery.slimscroll.js" />
+    <Content Include="assets\js\jquery-ui\jquery-ui.min.js" />
+    <Content Include="assets\js\jquery.easypiechart.min.js" />
+    <Content Include="assets\js\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="assets\js\jquery.mousewheel.min.js" />
+    <Content Include="assets\js\jquery.quicksearch.js" />
+    <Content Include="assets\js\jquery\jquery.min.js" />
+    <Content Include="assets\js\modal.js" />
+    <Content Include="assets\js\modalEffects.js" />
+    <Content Include="assets\js\modernizr\css-scrollbars.js" />
+    <Content Include="assets\js\modernizr\modernizr.js" />
+    <Content Include="assets\js\morris.js\morris.js" />
+    <Content Include="assets\js\owl-custom.js" />
+    <Content Include="assets\js\pcoded.min.js" />
+    <Content Include="assets\js\popper.js\popper.min.js" />
+    <Content Include="assets\js\raphael\raphael.min.js" />
+    <Content Include="assets\js\rating.js" />
+    <Content Include="assets\js\script.js" />
+    <Content Include="assets\js\script.min.js" />
+    <Content Include="assets\js\SmoothScroll.js" />
+    <Content Include="assets\js\swiper-custom.js" />
+    <Content Include="assets\js\vertical\horizontal-layout.min.js" />
+    <Content Include="assets\js\vertical\menu\box-layout.js" />
+    <Content Include="assets\js\vertical\menu\menu-compact.js" />
+    <Content Include="assets\js\vertical\menu\menu-header-fixed.js" />
+    <Content Include="assets\js\vertical\menu\menu-hori-fixed.js" />
+    <Content Include="assets\js\vertical\menu\menu-rtl.js" />
+    <Content Include="assets\js\vertical\menu\menu-sidebar-fixed.js" />
+    <Content Include="assets\js\vertical\menu\menu-static.js" />
+    <Content Include="assets\js\vertical\vertical-layout.js" />
+    <Content Include="assets\js\vertical\vertical-layout.min.js" />
+    <Content Include="assets\pages\accordion\accordion.js" />
+    <Content Include="assets\pages\accordion\accordion.min.js" />
+    <Content Include="assets\pages\chart\morris\morris-custom-chart.js" />
+    <Content Include="assets\pages\dashboard\amchart\css\amchart.css" />
+    <Content Include="assets\pages\dashboard\amchart\css\export.css" />
+    <Content Include="assets\pages\dashboard\amchart\js\amcharts.js" />
+    <Content Include="assets\pages\dashboard\amchart\js\custom-amchart.js" />
+    <Content Include="assets\pages\dashboard\amchart\js\export.min.js" />
+    <Content Include="assets\pages\dashboard\amchart\js\images\dragIconRoundBig.svg" />
+    <Content Include="assets\pages\dashboard\amchart\js\images\dragIconRoundBigH.svg" />
+    <Content Include="assets\pages\dashboard\amchart\js\light.js" />
+    <Content Include="assets\pages\dashboard\amchart\js\serial.js" />
+    <Content Include="assets\pages\dashboard\custom-dashboard.js" />
+    <Content Include="assets\pages\dashboard\custom-dashboard.min.js" />
+    <Content Include="assets\pages\google-maps\gmaps.js" />
+    <Content Include="assets\pages\google-maps\google-maps.js" />
+    <Content Include="assets\pages\icon-modal.js" />
+    <Content Include="assets\pages\notification\notification.css" />
+    <Content Include="assets\pages\notification\notification.js" />
+    <Content Include="assets\pages\todo\todo.js" />
+    <Content Include="assets\pages\waves\css\waves.min.css" />
+    <Content Include="assets\pages\waves\js\waves.min.js" />
+    <Content Include="assets\pages\widget\amchart\amcharts.js" />
+    <Content Include="assets\pages\widget\amchart\amcharts.min.js" />
+    <Content Include="assets\pages\widget\amchart\ammap.js" />
+    <Content Include="assets\pages\widget\amchart\ammap.min.js" />
+    <Content Include="assets\pages\widget\amchart\continentsLow.js" />
+    <Content Include="assets\pages\widget\amchart\continentsLow.min.js" />
+    <Content Include="assets\pages\widget\amchart\export.min.js" />
+    <Content Include="assets\pages\widget\amchart\gauge.js" />
+    <Content Include="assets\pages\widget\amchart\gauge.min.js" />
+    <Content Include="assets\pages\widget\amchart\images\dragIconRoundBig.svg" />
+    <Content Include="assets\pages\widget\amchart\images\lens.svg" />
+    <Content Include="assets\pages\widget\amchart\light.js" />
+    <Content Include="assets\pages\widget\amchart\light.min.js" />
+    <Content Include="assets\pages\widget\amchart\pie.js" />
+    <Content Include="assets\pages\widget\amchart\pie.min.js" />
+    <Content Include="assets\pages\widget\amchart\serial.js" />
+    <Content Include="assets\pages\widget\amchart\serial.min.js" />
+    <Content Include="assets\pages\widget\amchart\usaLow.js" />
+    <Content Include="assets\pages\widget\amchart\worldLow.js" />
+    <Content Include="assets\pages\widget\amchart\worldLow.min.js" />
+    <Content Include="assets\pages\widget\excanvas.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\uploads\usuarios\default.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\icon\CAW.TTF" />
+    <Content Include="assets\icon\fa-brands-400.eot" />
+    <Content Include="assets\icon\fa-brands-400.ttf" />
+    <Content Include="assets\icon\fa-brands-400.woff" />
+    <Content Include="assets\icon\fa-brands-400.woff2" />
+    <Content Include="assets\icon\fa-regular-400.eot" />
+    <Content Include="assets\icon\fa-regular-400.ttf" />
+    <Content Include="assets\icon\fa-regular-400.woff" />
+    <Content Include="assets\icon\fa-regular-400.woff2" />
+    <Content Include="assets\icon\fa-solid-900.eot" />
+    <Content Include="assets\icon\fa-solid-900.ttf" />
+    <Content Include="assets\icon\fa-solid-900.woff" />
+    <Content Include="assets\icon\fa-solid-900.woff2" />
+    <Content Include="assets\icon\feather\fonts\feather.eot" />
+    <Content Include="assets\icon\feather\fonts\feather.ttf" />
+    <Content Include="assets\icon\feather\fonts\feather.woff" />
+    <Content Include="assets\icon\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\icon\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\icon\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\icon\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\icon\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\icon\fontawesome-webfont.eot" />
+    <Content Include="assets\icon\fontawesome-webfont.ttf" />
+    <Content Include="assets\icon\fontawesome-webfont.woff" />
+    <Content Include="assets\icon\fontawesome-webfont.woff2" />
+    <Content Include="assets\icon\FontAwesome.otf" />
+    <Content Include="assets\icon\icofont\fonts\icofont.eot" />
+    <Content Include="assets\icon\icofont\fonts\icofont.ttf" />
+    <Content Include="assets\icon\icofont\fonts\icofont.woff" />
+    <Content Include="assets\icon\ionicons.eot" />
+    <Content Include="assets\icon\ionicons.ttf" />
+    <Content Include="assets\icon\ionicons.woff" />
+    <Content Include="assets\icon\Linearicons-Free.eot" />
+    <Content Include="assets\icon\Linearicons-Free.ttf" />
+    <Content Include="assets\icon\Linearicons-Free.woff" />
+    <Content Include="assets\icon\Linearicons-Free.woff2" />
+    <Content Include="assets\icon\SEGOEUI.ttf" />
+    <Content Include="assets\icon\SEGOEUIB.TTF" />
+    <Content Include="assets\icon\segoeuii.ttf" />
+    <Content Include="assets\icon\SEGOEUIZ.TTF" />
+    <Content Include="assets\icon\Simple-Line-Icons.eot" />
+    <Content Include="assets\icon\Simple-Line-Icons.ttf" />
+    <Content Include="assets\icon\Simple-Line-Icons.woff" />
+    <Content Include="assets\icon\Simple-Line-Icons.woff2" />
+    <Content Include="assets\icon\themify-icons\fonts\themify.eot" />
+    <Content Include="assets\icon\themify-icons\fonts\themify.ttf" />
+    <Content Include="assets\icon\themify-icons\fonts\themify.woff" />
+    <Content Include="assets\images\auth\Thumbs.db" />
+    <Content Include="assets\images\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\Park.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -289,11 +521,26 @@
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Tarifa\Index.cshtml" />
+    <Content Include="Views\Tarifa\Create.cshtml" />
+    <Content Include="Views\Tarifa\Edit.cshtml" />
+    <Content Include="Views\Tarifa\Delete.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Views\Ticket\Create.cshtml" />
+    <Content Include="Views\Ticket\Close.cshtml" />
+    <Content Include="Views\Factura\Index.cshtml" />
+    <Content Include="Views\Factura\Create.cshtml" />
+    <Content Include="Views\Factura\Delete.cshtml" />
+    <Content Include="Views\Pago\Index.cshtml" />
+    <Content Include="Views\Pago\Create.cshtml" />
+    <Content Include="Views\Pago\Delete.cshtml" />
+    <Content Include="Views\Kardex\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Auditoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\" />
-    <Folder Include="Content\uploads\usuarios\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -316,6 +563,15 @@
       <Project>{c9c494d6-dbee-4c08-b7ae-2305f1464be0}</Project>
       <Name>Factory</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\rptUser.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptUser.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,48 @@
+﻿@model List<Entity.General.eTicket>
+
+@{
+    ViewBag.Title = "Ticket";
+}
+
+<h2>Ticket</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>Vehículo</th>
+        <th>Cliente</th>
+        <th>Espacio</th>
+        <th>Usuario</th>
+        <th>Tarifa</th>
+        <th>Entrada</th>
+        <th>Estado</th>
+        <th>Salida</th>
+        <th>Minutos</th>
+        <th>Monto</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(item.Vehiculo != null ? item.Vehiculo.Placa : "")</td>
+            <td>@(item.Cliente != null ? item.Cliente.Nombre : "")</td>
+            <td>@(item.Espacio != null ? item.Espacio.Codigo : "")</td>
+            <td>@(item.Usuario != null ? item.Usuario.Nombre : "")</td>
+            <td>@(item.Tarifa != null ? item.Tarifa.Nombre : "")</td>
+            <td>@item.Entrada</td>
+            <td>@item.Estado</td>
+            <td>@(item.Salida.HasValue ? item.Salida.Value.ToString() : "")</td>
+            <td>@item.MinutosTotales</td>
+            <td>@item.MontoCalculado</td>
+            <td>
+                @if (item.Estado == "ACTIVO")
+                {
+                    @Html.ActionLink("Cerrar", "Close", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                }
+            </td>
+        </tr>
+    }
+</table>

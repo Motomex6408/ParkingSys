@@ -1,0 +1,145 @@
+﻿@model Entity.eLogin
+
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Login - ParkingSys</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="icon" href="@Url.Content("~/assets/images/favicon.ico")" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/bootstrap/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/pages/waves/css/waves.min.css")" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/themify-icons/themify-icons.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/icofont/css/icofont.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/font-awesome/css/font-awesome.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/style.css")">
+</head>
+
+<body themebg-pattern="theme1">
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                    <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                    <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                    <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                    <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="login-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.toURL)
+
+                        <div class="text-center">
+                            <img src="@Url.Content("~/assets/images/logo.png")" alt="logo.png">
+                        </div>
+
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center">Iniciar Sesión</h3>
+                                    </div>
+                                </div>
+
+                                @if (ViewBag.message != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        @ViewBag.message
+                                    </div>
+                                }
+
+                                <div class="form-group form-primary">
+                                    @Html.TextBoxFor(m => m.Access, new
+                                        {
+                                            @class = "form-control",
+                                            autocomplete = "username"
+                                        })
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Usuario o correo</label>
+                                    @Html.ValidationMessageFor(m => m.Access, "", new { @class = "text-danger" })
+                                </div>
+
+
+                                <div class="form-group form-primary">
+                                    @Html.PasswordFor(m => m.Password, new
+                               {
+                                   @class = "form-control",
+                                   autocomplete = "current-password"
+                               })
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Clave</label>
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">
+                                            Entrar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="text-inverse text-left m-b-0">Sistema de Gestión de Parqueo</p>
+                                        <p class="text-inverse text-left">
+                                            <a href="@Url.Action("Index", "Home")"><b>Ir al inicio</b></a>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="@Url.Content("~/assets/images/auth/Logo-small-bottom.png")" alt="small-logo.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="@Url.Content("~/assets/js/jquery/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/popper.js/popper.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/bootstrap/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/assets/pages/waves/js/waves.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/jquery-slimscroll/jquery.slimscroll.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/common-pages.js")"></script>
+</body>
+</html>

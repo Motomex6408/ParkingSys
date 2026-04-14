@@ -66,11 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="fAuditoria.cs" />
     <Compile Include="fCliente.cs" />
     <Compile Include="fEspacio.cs" />
+    <Compile Include="fFactura.cs" />
     <Compile Include="fMetodoPago.cs" />
+    <Compile Include="fPago.cs" />
     <Compile Include="fRol.cs" />
     <Compile Include="fSucursal.cs" />
+    <Compile Include="fTarifa.cs" />
+    <Compile Include="fTicket.cs" />
     <Compile Include="fTipoVehiculo.cs" />
     <Compile Include="fUsuario.cs" />
     <Compile Include="fVehiculo.cs" />

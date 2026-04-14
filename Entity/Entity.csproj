@@ -65,10 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AConvert.cs" />
     <Compile Include="Administrador\eRol.cs" />
     <Compile Include="Administrador\eTarifa.cs" />
     <Compile Include="Administrador\eUsuario.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Administrador\eAuditoria.cs" />
     <Compile Include="eLogin.cs" />
     <Compile Include="Estructura\eEmpresa.cs" />
     <Compile Include="Estructura\eEspacio.cs" />

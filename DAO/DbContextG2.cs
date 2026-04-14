@@ -30,6 +30,7 @@ namespace DAO
         public DbSet<eVehiculo> Vehiculo { get; set; }
         public DbSet<eTicket> Ticket { get; set; }
         public DbSet<eKardex> Kardex { get; set; }
+        public DbSet<eAuditoria> Auditoria { get; set; }
 
         public DbSet<eMetodoPago> MetodoPago { get; set; }
         public DbSet<eFactura> Factura { get; set; }

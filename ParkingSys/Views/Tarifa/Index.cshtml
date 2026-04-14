@@ -1,0 +1,44 @@
+﻿@model List<Entity.Administrador.eTarifa>
+
+@{
+    ViewBag.Title = "Tarifa";
+}
+
+<h2>Tarifa</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>Sucursal</th>
+        <th>Tipo Vehículo</th>
+        <th>Nombre</th>
+        <th>Precio Hora</th>
+        <th>Precio Día</th>
+        <th>Precio Mes</th>
+        <th>Vigencia Inicio</th>
+        <th>Vigencia Fin</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(item.Sucursal != null ? item.Sucursal.Nombre : "")</td>
+            <td>@(item.TipoVehiculo != null ? item.TipoVehiculo.Nombre : "")</td>
+            <td>@item.Nombre</td>
+            <td>@item.PrecioHora</td>
+            <td>@item.PrecioDia</td>
+            <td>@item.PrecioMes</td>
+            <td>@item.VigenciaInicio.ToShortDateString()</td>
+            <td>@item.VigenciaFin.ToShortDateString()</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                @Html.Raw(" ")
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

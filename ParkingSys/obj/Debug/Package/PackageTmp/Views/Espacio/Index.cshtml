@@ -1,0 +1,35 @@
+﻿@model List<Entity.Estructura.eEspacio>
+
+@{
+    ViewBag.Title = "Espacio";
+}
+
+<h2>Espacio</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Zona</th>
+        <th>Tipo Vehículo</th>
+        <th>Código</th>
+        <th>Disponible</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(item.Zona != null ? item.Zona.Nombre : "")</td>
+            <td>@(item.TipoVehiculo != null ? item.TipoVehiculo.Nombre : "")</td>
+            <td>@item.Codigo</td>
+            <td>@item.Disponible</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

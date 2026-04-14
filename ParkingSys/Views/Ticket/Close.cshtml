@@ -1,0 +1,53 @@
+﻿@model Entity.General.eTicket
+
+@{
+    ViewBag.Title = "Cerrar Ticket";
+}
+
+<h2>Cerrar Ticket</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Confirmar salida</h5>
+    </div>
+    <div class="card-block">
+
+        @if (ViewBag.message != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.message
+            </div>
+        }
+
+        <dl class="dl-horizontal">
+            <dt>Vehículo</dt>
+            <dd>@(Model.Vehiculo != null ? Model.Vehiculo.Placa : "")</dd>
+
+            <dt>Cliente</dt>
+            <dd>@(Model.Cliente != null ? Model.Cliente.Nombre : "")</dd>
+
+            <dt>Espacio</dt>
+            <dd>@(Model.Espacio != null ? Model.Espacio.Codigo : "")</dd>
+
+            <dt>Tarifa</dt>
+            <dd>@(Model.Tarifa != null ? Model.Tarifa.Nombre : "")</dd>
+
+            <dt>Entrada</dt>
+            <dd>@Model.Entrada</dd>
+
+            <dt>Estado</dt>
+            <dd>@Model.Estado</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="text-right">
+                <input type="submit" value="Cerrar Ticket" class="btn btn-danger" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>

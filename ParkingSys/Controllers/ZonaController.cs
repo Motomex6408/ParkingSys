@@ -6,6 +6,17 @@ namespace AppG2.Controllers
 {
     public class ZonaController : Controller
     {
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "User");
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         fZona factory { get; set; }
 
         public ZonaController()
@@ -39,6 +50,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "ZONA", "CREAR", "Se creo una nueva zona.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -77,6 +94,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "ZONA", "EDITAR", "Se edito una zona.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -112,6 +135,12 @@ namespace AppG2.Controllers
 
             if (factory.success)
             {
+                if (Session["IdUsuario"] != null)
+                {
+                    int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                    fAuditoria auditoria = new fAuditoria();
+                    auditoria.save(idUsuario, "ZONA", "ELIMINAR", "Se elimino una zona.");
+                }
                 return RedirectToAction("Index");
             }
 

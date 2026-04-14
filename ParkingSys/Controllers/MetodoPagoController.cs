@@ -6,6 +6,18 @@ namespace AppG2.Controllers
 {
     public class MetodoPagoController : Controller
     {
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "User");
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         fMetodoPago factory { get; set; }
 
         public MetodoPagoController()
@@ -38,6 +50,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "METODO-PAGO", "CREAR", "Se creó un nuevo metodo de pago.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -63,6 +81,12 @@ namespace AppG2.Controllers
 
                 if (factory.success)
                 {
+                    if (Session["IdUsuario"] != null)
+                    {
+                        int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                        fAuditoria auditoria = new fAuditoria();
+                        auditoria.save(idUsuario, "METODO-PAGO", "EDITAR", "Se edito un metodo de pago.");
+                    }
                     return RedirectToAction("Index");
                 }
 
@@ -86,6 +110,12 @@ namespace AppG2.Controllers
 
             if (factory.success)
             {
+                if (Session["IdUsuario"] != null)
+                {
+                    int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                    fAuditoria auditoria = new fAuditoria();
+                    auditoria.save(idUsuario, "METODO-PAGO", "ELIMINAR", "Se elimino un nuevo metodo de pago.");
+                }
                 return RedirectToAction("Index");
             }
 

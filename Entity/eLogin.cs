@@ -10,8 +10,8 @@ namespace Entity
     public class eLogin
     {
         [Required]
-        [Display(Name = "Nombre de usuario")]
-        public string UserName { get; set; }
+        [Display(Name = "Usuario o correo")]
+        public string Access { get; set; }
 
         [Required]
         [Display(Name = "Clave")]

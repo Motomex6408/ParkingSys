@@ -1,0 +1,43 @@
+﻿@model Entity.Estructura.eSucursal
+
+@{
+    ViewBag.Title = "Eliminar Sucursal";
+}
+
+<h2>Eliminar Sucursal</h2>
+
+<h4>¿Estás seguro que deseas eliminar esto?</h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Model.Nombre</dd>
+
+        <dt>Dirección</dt>
+        <dd>@Model.Direccion</dd>
+
+        <dt>Teléfono</dt>
+        <dd>@Model.Telefono</dd>
+
+        <dt>Email</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Capacidad Total</dt>
+        <dd>@Model.CapacidadTotal</dd>
+
+        <dt>Activo</dt>
+        <dd>@Model.Activo</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    }
+
+    <br />
+    @Html.ActionLink("Cancelar", "Index")
+</div>

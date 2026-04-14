@@ -1,0 +1,33 @@
+﻿@model List<Entity.Estructura.eSucursal>
+
+<h2>Sucursal</h2>
+
+<p>@Html.ActionLink("Nuevo", "Create")</p>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Capacidad</th>
+        <th>Activo</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Direccion</td>
+            <td>@item.Telefono</td>
+            <td>@item.Email</td>
+            <td>@item.CapacidadTotal</td>
+            <td>@item.Activo</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

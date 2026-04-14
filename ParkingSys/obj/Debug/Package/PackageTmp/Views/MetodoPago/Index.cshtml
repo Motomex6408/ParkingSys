@@ -1,0 +1,33 @@
+﻿@model List<Entity.Facturacion.eMetodoPago>
+
+@{
+    ViewBag.Title = "Método de Pago";
+}
+
+<h2>Método de Pago</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Activo</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Descripcion</td>
+            <td>@item.Activo</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

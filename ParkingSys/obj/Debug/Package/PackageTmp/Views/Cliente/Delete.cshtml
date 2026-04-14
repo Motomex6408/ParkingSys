@@ -1,0 +1,43 @@
+﻿@model Entity.General.eCliente
+
+@{
+    ViewBag.Title = "Eliminar Cliente";
+}
+
+<h2>Eliminar Cliente</h2>
+
+<h4>¿Estás seguro que deseas eliminar esto?</h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Model.Nombre</dd>
+
+        <dt>Apellido</dt>
+        <dd>@Model.Apellido</dd>
+
+        <dt>Teléfono</dt>
+        <dd>@Model.Telefono</dd>
+
+        <dt>Correo</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>RFC</dt>
+        <dd>@Model.RTN</dd>
+
+        <dt>Tipo</dt>
+        <dd>@Model.Tipo</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    }
+
+    <br />
+    @Html.ActionLink("Cancelar", "Index")
+</div>
