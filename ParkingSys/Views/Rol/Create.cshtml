@@ -4,46 +4,103 @@
     ViewBag.Title = "Nuevo Rol";
 }
 
-<h2>Nuevo Rol</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <hr />
-
-        @if (ViewBag.message != null)
-        {
-            <div class="text-danger">
-                @ViewBag.message
-            </div>
-        }
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+<div class="container-fluid p-0">
+    <div class="card shadow-sm border-0" style="background: #ffffff !important; border-radius: 15px; margin-bottom:20px;">
+        <div class="card-block p-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div style="width:55px; height:55px; border-radius:12px; background-color: #448aff !important; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(68, 138, 255, 0.4);" class="mr-3">
+                        <i class="icofont icofont-shield-alt" style="font-size:26px; color: #ffffff !important;"></i>
+                    </div>
+                    <div>
+                        <h4 class="f-w-600 m-b-0" style="color: #333 !important;">Crear Nuevo Rol</h4>
+                        <p class="m-b-0 text-muted">Defina un nuevo nivel de acceso para el sistema</p>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index")" class="btn btn-primary btn-round shadow-sm" style="background-color: #448aff !important; border:none; padding: 10px 25px; color: #ffffff !important;">
+                    <i class="icofont icofont-arrow-left"></i> Volver al Listado
+                </a>
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
+    <div class="card shadow-sm border-0" style="background: #ffffff !important; border-radius: 15px;">
+        <div class="card-block p-4">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                if (ViewBag.message != null)
+                {
+                    <div class="alert alert-danger border-0 shadow-sm">
+                        <i class="icofont icofont-error-box m-r-10"></i> @ViewBag.message
+                    </div>
+                }
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="m-b-25 f-w-600" style="color: #222 !important; border-bottom: 2px solid #448aff; display: inline-block; padding-bottom: 5px;">Detalles del Rol</h5>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group m-t-10">
+                            <label class="f-w-600 text-dark">Nombre del Rol</label>
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control custom-input", placeholder = "Ej. Supervisor" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group m-t-10">
+                            <label class="f-w-600 text-dark">Descripción de Funciones</label>
+                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control custom-input", placeholder = "Describa los permisos de este rol" } })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 m-t-20">
+                        <hr />
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-round shadow-blue px-5 py-2 text-white f-w-700">
+                                <i class="icofont icofont-save m-r-10"></i> GUARDAR NUEVO ROL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
+
+<style>
+   
+    .custom-input {
+        border-radius: 8px !important;
+        border: 1px solid #ced4da !important;
+        padding: 10px !important;
+        background-color: #ffffff !important;
+    }
+
+    .btn-round {
+        border-radius: 50px !important;
+    }
+
+    .btn-primary {
+        background-color: #448aff !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    .shadow-blue {
+        box-shadow: 0 4px 15px rgba(68, 138, 255, 0.4) !important;
+    }
+
+    .text-dark {
+        color: #333 !important;
+    }
+
+    .f-w-700 {
+        font-weight: 700;
+    }
+</style>

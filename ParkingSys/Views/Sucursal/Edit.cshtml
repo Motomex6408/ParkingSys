@@ -4,78 +4,131 @@
     ViewBag.Title = "Editar Sucursal";
 }
 
-<h2>Editar Sucursal</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Id)
-
-    <div class="form-horizontal">
-        <hr />
-
-        @if (ViewBag.message != null)
-        {
-            <div class="text-danger">@ViewBag.message</div>
-        }
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Nombre)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Direccion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Direccion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Direccion)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Telefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Telefono, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Telefono)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Email)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.CapacidadTotal, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.CapacidadTotal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.CapacidadTotal)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Activo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(m => m.Activo)
+<div class="container-fluid p-0">
+    <div class="card shadow-sm border-0" style="background: white !important; border-radius: 15px; margin-bottom:20px;">
+        <div class="card-block p-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div style="width:55px; height:55px; border-radius:12px; background-color: #FFB64D !important; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 182, 77, 0.4);" class="mr-3">
+                        <i class="icofont icofont-ui-edit" style="font-size:26px; color: #ffffff !important;"></i>
+                    </div>
+                    <div>
+                        <h4 class="f-w-600 m-b-0" style="color: #222 !important;">Editar Sucursal</h4>
+                        <p class="m-b-0 text-muted">Actualice la información física y de contacto de la sede</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <a href="@Url.Action("Index")" class="btn btn-primary btn-round shadow-sm" style="background-color: #448aff !important; border:none; padding: 10px 25px; color: #ffffff !important;">
+                    <i class="icofont icofont-arrow-left"></i> Volver al Listado
+                </a>
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Volver", "Index")
+    <div class="card shadow-sm border-0" style="background: #ffffff !important; border-radius: 15px;">
+        <div class="card-block p-4">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Id)
+
+                if (ViewBag.message != null)
+                {
+                    <div class="alert alert-danger border-0 shadow-sm">
+                        <i class="icofont icofont-error-box m-r-10"></i> @ViewBag.message
+                    </div>
+                }
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="m-b-25 f-w-600" style="color: #222 !important; border-bottom: 2px solid #FFB64D; display: inline-block; padding-bottom: 5px;">Identificación y Ubicación</h5>
+
+                        <div class="form-group m-t-10">
+                            <label class="f-w-600 text-dark">Nombre de Sucursal</label>
+                            @Html.EditorFor(m => m.Nombre, new { htmlAttributes = new { @class = "form-control custom-input", placeholder = "Ej. Central Norte" } })
+                            @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="f-w-600 text-dark">Dirección Completa</label>
+                            @Html.EditorFor(m => m.Direccion, new { htmlAttributes = new { @class = "form-control custom-input", placeholder = "Calle, Avenida, Bloque..." } })
+                            @Html.ValidationMessageFor(m => m.Direccion, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="f-w-600 text-dark">Capacidad Total (Plazas)</label>
+                            @Html.EditorFor(m => m.CapacidadTotal, new { htmlAttributes = new { @class = "form-control custom-input", type = "number" } })
+                            @Html.ValidationMessageFor(m => m.CapacidadTotal, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" style="border-left: 1px solid #eee;">
+                        <h5 class="m-b-25 f-w-600" style="color: #222 !important; border-bottom: 2px solid #FFB64D; display: inline-block; padding-bottom: 5px;">Contacto y Operación</h5>
+
+                        <div class="form-group m-t-10">
+                            <label class="f-w-600 text-dark">Teléfono de Contacto</label>
+                            @Html.EditorFor(m => m.Telefono, new { htmlAttributes = new { @class = "form-control custom-input", placeholder = "+504 0000-0000" } })
+                            @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="f-w-600 text-dark">Correo Electrónico</label>
+                            @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control custom-input", placeholder = "sucursal@ejemplo.com" } })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="form-group m-t-25">
+                            <label class="text-dark f-w-600">
+                                @Html.CheckBoxFor(m => m.Activo)
+                                Activar sucursal inmediatamente
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 m-t-20">
+                        <hr />
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-warning btn-round shadow-warning px-5 py-2 text-white f-w-700">
+                                <i class="icofont icofont-refresh m-r-10"></i> ACTUALIZAR SUCURSAL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
+
+<style>
+    
+    .custom-input {
+        border-radius: 8px !important;
+        border: 1px solid #ced4da !important;
+        padding: 10px !important;
+    }
+
+    .btn-round {
+        border-radius: 50px !important;
+    }
+
+    .btn-warning {
+        background-color: #FFB64D !important;
+        border: none !important;
+        color: #ffffff !important;
+    }
+
+    .shadow-warning {
+        box-shadow: 0 4px 15px rgba(255, 182, 77, 0.4) !important;
+    }
+
+    .text-dark {
+        color: #333 !important;
+    }
+
+    .f-w-700 {
+        font-weight: 700;
+    }
+
+    .f-w-600 {
+        font-weight: 600;
+    }
+</style>

@@ -1,15 +1,16 @@
 ﻿@{
     Layout = null;
+
+    string nombreUsuario = Session["Nombre"] != null ? Session["Nombre"].ToString() : "Invitado";
+    string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "";
+    string fotoUsuario = Session["Foto"] != null ? Session["Foto"].ToString() : "default.png";
+    string rolUsuario = Session["Rol"] != null ? Session["Rol"].ToString() : "";
+    bool esAdmin = rolUsuario == "Administrador";
 }
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <style>
-        body {
-            background: red !important;
-        }
-    </style>
     <title>@ViewBag.Title - ParkingSys</title>
 
     <meta charset="utf-8">
@@ -87,10 +88,24 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="@Url.Content("~/Content/uploads/usuarios/" + (User.Identity.IsAuthenticated ? "default.png" : "default.png"))" class="img-radius" alt="User">
-                                    <span>ParkingSys</span>
+                                    <img src="@Url.Content("~/Content/uploads/usuarios/" + fotoUsuario)" class="img-radius" alt="User">
+                                    <span>@nombreUsuario</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
+                                <ul class="show-notification profile-notification">
+                                    <li>
+                                        <div style="padding:10px 20px;">
+                                            <strong>@nombreUsuario</strong><br />
+                                            <small>@userName</small><br />
+                                            <small>@rolUsuario</small>
+                                        </div>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <a href="@Url.Action("Logout", "User")">
+                                            <i class="ti-layout-sidebar-left"></i> Cerrar sesión
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -106,34 +121,162 @@
                         </div>
 
                         <div class="pcoded-inner-navbar main-menu">
-                            <div class="pcoded-navigation-label">Menú</div>
 
+                            <div class="">
+                                <div class="main-menu-header">
+                                    <img class="img-80 img-radius" src="@Url.Content("~/Content/uploads/usuarios/" + fotoUsuario)" alt="User-Profile-Image">
+                                    <div class="user-details">
+                                        <span id="more-details">@nombreUsuario <i class="fa fa-caret-down"></i></span>
+                                        <small class="d-block text-muted">@rolUsuario</small>
+                                    </div>
+                                </div>
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                            <a href="@Url.Action("Index", "Home")"><i class="ti-home"></i>Dashboard</a>
+                                            <a href="@Url.Action("Logout", "User")"><i class="ti-layout-sidebar-left"></i>Cerrar sesión</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="pcoded-navigation-label">Principal</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
                                     <a href="@Url.Action("Index", "Home")" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-home"></i></span>
-                                        <span class="pcoded-mtext">Inicio</span>
+                                        <span class="pcoded-mtext">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                             </ul>
 
-                            <div class="pcoded-navigation-label">Catálogos</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li><a href="@Url.Action("Index", "TipoVehiculo")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-car"></i></span><span class="pcoded-mtext">Tipo Vehículo</span></a></li>
-                                <li><a href="@Url.Action("Index", "Cliente")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-user"></i></span><span class="pcoded-mtext">Cliente</span></a></li>
-                                <li><a href="@Url.Action("Index", "MetodoPago")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-money"></i></span><span class="pcoded-mtext">Método de Pago</span></a></li>
-                                <li><a href="@Url.Action("Index", "Rol")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-id-badge"></i></span><span class="pcoded-mtext">Rol</span></a></li>
-                                <li><a href="@Url.Action("Index", "Usuario")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-user"></i></span><span class="pcoded-mtext">Usuario</span></a></li>
-                            </ul>
+                            @if (esAdmin)
+                            {
+                                <div class="pcoded-navigation-label">Mantenimiento</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="@Url.Action("Index", "Usuario")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-user"></i></span>
+                                            <span class="pcoded-mtext">Usuarios</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Rol")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
+                                            <span class="pcoded-mtext">Roles</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "MetodoPago")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-money"></i></span>
+                                            <span class="pcoded-mtext">Métodos de Pago</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Tarifa")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-tag"></i></span>
+                                            <span class="pcoded-mtext">Tarifas</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Auditoria")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-write"></i></span>
+                                            <span class="pcoded-mtext">Auditoría</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="pcoded-navigation-label">Estructura</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="@Url.Action("Index", "Sucursal")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-map-alt"></i></span>
+                                            <span class="pcoded-mtext">Sucursales</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Zona")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layout-grid2"></i></span>
+                                            <span class="pcoded-mtext">Zonas</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Espacio")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layout-column3"></i></span>
+                                            <span class="pcoded-mtext">Espacios</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "TipoVehiculo")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-car"></i></span>
+                                            <span class="pcoded-mtext">Tipo Vehículo</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
 
                             <div class="pcoded-navigation-label">Operación</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li><a href="@Url.Action("Index", "Vehiculo")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-truck"></i></span><span class="pcoded-mtext">Vehículo</span></a></li>
-                                <li><a href="@Url.Action("Index", "Sucursal")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-map-alt"></i></span><span class="pcoded-mtext">Sucursal</span></a></li>
-                                <li><a href="@Url.Action("Index", "Zona")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-layout-grid2"></i></span><span class="pcoded-mtext">Zona</span></a></li>
-                                <li><a href="@Url.Action("Index", "Espacio")" class="waves-effect waves-dark"><span class="pcoded-micon"><i class="ti-layout-column3"></i></span><span class="pcoded-mtext">Espacio</span></a></li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Cliente")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-user"></i></span>
+                                        <span class="pcoded-mtext">Clientes</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Vehiculo")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-truck"></i></span>
+                                        <span class="pcoded-mtext">Vehículos</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Ticket")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-ticket"></i></span>
+                                        <span class="pcoded-mtext">Tickets</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Kardex")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i></span>
+                                        <span class="pcoded-mtext">Kardex</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
+
+                            <div class="pcoded-navigation-label">Facturación</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="@Url.Action("Index", "Factura")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-file"></i></span>
+                                        <span class="pcoded-mtext">Facturas</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Pago")" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-wallet"></i></span>
+                                        <span class="pcoded-mtext">Pagos</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                           
+
                         </div>
                     </nav>
 

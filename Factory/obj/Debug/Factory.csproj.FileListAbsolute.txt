@@ -1,12 +1,16 @@
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Factory.dll.config
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Factory.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Factory.pdb
+C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\DAO.dll
+C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Entity.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\EntityFramework.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\EntityFramework.SqlServer.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\System.Data.Common.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\System.Data.SqlClient.dll
+C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\DAO.pdb
+C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Entity.pdb
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\EntityFramework.xml
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\EntityFramework.SqlServer.xml
 C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Microsoft.AspNet.Identity.Core.xml
@@ -16,7 +20,3 @@ C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\es\Microsoft.AspNet.Ident
 C:\Computacion_En_La_Nube\ParkingSys\Factory\obj\Debug\Factory.csprojResolveAssemblyReference.cache
 C:\Computacion_En_La_Nube\ParkingSys\Factory\obj\Debug\Factory.dll
 C:\Computacion_En_La_Nube\ParkingSys\Factory\obj\Debug\Factory.pdb
-C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\DAO.dll
-C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Entity.dll
-C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\DAO.pdb
-C:\Computacion_En_La_Nube\ParkingSys\Factory\bin\Debug\Entity.pdb

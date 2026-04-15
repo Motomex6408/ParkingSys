@@ -31,6 +31,13 @@ namespace AppG2.Controllers
                 .Select(x => (decimal?)x.Monto)
                 .Sum() ?? 0;
 
+            ViewBag.IngresosTotales = db.Pago
+                .Where(x => x.Estado == "PAGADO")
+                .Select(x => (decimal?)x.Monto)
+                .Sum() ?? 0;
+
+
+
             ViewBag.TotalFacturas = db.Factura.Count();
             ViewBag.TotalPagos = db.Pago.Count();
 
@@ -40,6 +47,8 @@ namespace AppG2.Controllers
                 .OrderByDescending(x => x.Entrada)
                 .Take(5)
                 .ToList();
+
+           
 
             var pagos = db.Pago
                 .Include("Factura")
@@ -52,6 +61,9 @@ namespace AppG2.Controllers
                 .OrderByDescending(x => x.Fecha)
                 .Take(5)
                 .ToList();
+            
+
+
             var usuarios = db.Usuario
                 .Where(x => x.Activo == true)
                 .OrderByDescending(x => x.Id)

@@ -1,62 +1,253 @@
 ﻿@model List<Entity.General.eTicket>
 
 @{
-    ViewBag.Title = "Dashboard";
+    ViewBag.Title = "Panel";
 }
 
 <div class="row">
-    <div class="col-md-3">
-        <div class="card bg-c-green text-white">
-            <div class="card-block">
-                <h4>@ViewBag.EspaciosDisponibles</h4>
-                <p class="m-b-0">Espacios Disponibles</p>
+    <div class="col-md-6 col-xl-3">
+        <div class="card widget-card-1 border-0 shadow-sm">
+            <div class="card-block-small">
+                <i class="icofont icofont-car-alt-1 bg-c-green card1-icon shadow-green"></i>
+                <span class="text-c-green f-w-600">Disponibilidad</span>
+                <h3 class="f-w-700 m-t-10">@ViewBag.EspaciosDisponibles</h3>
+                <div>
+                    <span class="f-left m-t-10 text-muted">
+                        <i class="text-c-green f-16 icofont icofont-check-circled m-r-10"></i>Espacios libres
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card bg-c-red text-white">
-            <div class="card-block">
-                <h4>@ViewBag.EspaciosOcupados</h4>
-                <p class="m-b-0">Espacios Ocupados</p>
+    <div class="col-md-6 col-xl-3">
+        <div class="card widget-card-1 border-0 shadow-sm">
+            <div class="card-block-small">
+                <i class="icofont icofont-warning bg-c-red card1-icon shadow-red"></i>
+                <span class="text-c-red f-w-600">Ocupación</span>
+                <h3 class="f-w-700 m-t-10">@ViewBag.EspaciosOcupados</h3>
+                <div>
+                    <span class="f-left m-t-10 text-muted">
+                        <i class="text-c-red f-16 icofont icofont-close-circled m-r-10"></i>Espacios en uso
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card bg-c-blue text-white">
-            <div class="card-block">
-                <h4>@ViewBag.TicketsActivos</h4>
-                <p class="m-b-0">Tickets Activos</p>
+    <div class="col-md-6 col-xl-3">
+        <div class="card widget-card-1 border-0 shadow-sm">
+            <div class="card-block-small">
+                <i class="icofont icofont-ticket bg-c-blue card1-icon shadow-blue"></i>
+                <span class="text-c-blue f-w-600">Operaciones</span>
+                <h3 class="f-w-700 m-t-10">@ViewBag.TicketsActivos</h3>
+                <div>
+                    <span class="f-left m-t-10 text-muted">
+                        <i class="text-c-blue f-16 icofont icofont-curved-right m-r-10"></i>Tickets activos
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card bg-c-yellow text-white">
-            <div class="card-block">
-                <h4>L @string.Format("{0:N2}", ViewBag.IngresosHoy)</h4>
-                <p class="m-b-0">Ingresos de Hoy</p>
+    <div class="col-md-6 col-xl-3">
+        <div class="card widget-card-1 border-0 shadow-sm">
+            <div class="card-block-small">
+                <i class="icofont icofont-money-bag bg-c-yellow card1-icon shadow-yellow"></i>
+                <span class="text-c-yellow f-w-600">Caja Hoy</span>
+                <h3 class="f-w-700 m-t-10">L @(ViewBag.IngresosHoy != null ? string.Format("{0:N2}", ViewBag.IngresosHoy) : "0.00")</h3>
+                <div>
+                    <span class="f-left m-t-10 text-muted">
+                        <i class="text-c-yellow f-16 icofont icofont-chart-line m-r-10"></i>Ingresos totales
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<style>
+    /* Tarjeta base con fondo blanco para que resalten los colores */
+    .widget-card-1 {
+        border-radius: 15px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .widget-card-1:hover {
+            transform: translateY(-5px); /* Se eleva al pasar el mouse */
+        }
+
+    .card-block-small {
+        padding: 20px;
+        position: relative;
+    }
+
+    /* Estilo del Icono Circular Flotante */
+    .card1-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #fff;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    /* Sombras personalizadas por color */
+    .shadow-green {
+        box-shadow: 0 4px 12px rgba(147, 190, 82, 0.4);
+    }
+
+    .shadow-red {
+        box-shadow: 0 4px 12px rgba(255, 83, 112, 0.4);
+    }
+
+    .shadow-blue {
+        box-shadow: 0 4px 12px rgba(64, 153, 255, 0.4);
+    }
+
+    .shadow-yellow {
+        box-shadow: 0 4px 12px rgba(255, 182, 77, 0.4);
+    }
+
+    /* Ajustes de Texto */
+    .f-w-700 {
+        font-weight: 700;
+    }
+
+    .f-w-600 {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-size: 11px;
+    }
+
+    .m-t-10 {
+        margin-top: 10px;
+    }
+
+    .text-muted {
+        color: #919aa3 !important;
+        font-size: 13px;
+    }
+
+    /* Tarjetas principales y efectos */
+    .card {
+        border-radius: 12px;
+        border: none;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Estilo de Tablas Modernas */
+    .table thead th {
+        background-color: #f8f9fa;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 1px;
+        border-top: none;
+        color: #777;
+    }
+
+    .table td {
+        vertical-align: middle;
+        font-size: 14px;
+        color: #444;
+    }
+
+    /* Badges (Etiquetas) */
+    .badge {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+    }
+
+    .badge-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .badge-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    /* Perfiles de Usuarios Activos */
+    .user-card {
+        background: #fff;
+        border: 1px solid #f1f1f1;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .img-radius {
+        border: 3px solid #eee;
+        transition: all 0.3s;
+    }
+
+    .user-card:hover .img-radius {
+        border-color: #448aff;
+        transform: rotate(5deg);
+    }
+
+    /* Widget de Totalizadores */
+    .bg-info-gradient {
+        background: linear-gradient(45deg, #448aff, #3db5ff);
+        color: white;
+    }
+
+    .bg-purple-gradient {
+        background: linear-gradient(45deg, #775ada, #a389f4);
+        color: white;
+    }
+
+    /* Iconos y utilidades */
+    .card1-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: #fff;
+        font-size: 20px;
+    }
+</style>
+<div class="row">
+</div>
+
 <div class="row">
     <div class="col-md-6">
-        <div class="card text-center">
-            <div class="card-block">
-                <h5>Total Facturas</h5>
-                <h3>@ViewBag.TotalFacturas</h3>
+        <div class="card bg-info-gradient shadow-sm">
+            <div class="card-block p-4 text-center">
+                <i class="icofont icofont-invoice f-30 d-block m-b-10"></i>
+                <h5 class="m-b-5">Total Facturas</h5>
+                <h2 class="f-w-700">@ViewBag.TotalFacturas</h2>
             </div>
         </div>
     </div>
-
     <div class="col-md-6">
-        <div class="card text-center">
-            <div class="card-block">
-                <h5>Total Pagos</h5>
-                <h3>@ViewBag.TotalPagos</h3>
+        <div class="card bg-purple-gradient shadow-sm">
+            <div class="card-block p-4 text-center">
+                <i class="icofont icofont-pay f-30 d-block m-b-10"></i>
+                <h5 class="m-b-5">Total Pagos Realizados</h5>
+                <h2 class="f-w-700">@ViewBag.TotalPagos</h2>
             </div>
         </div>
     </div>
@@ -64,49 +255,45 @@
 
 <div class="row">
     <div class="col-xl-8 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Tickets Activos</h5>
+        <div class="card shadow-sm">
+            <div class="card-header bg-white border-0 p-3">
+                <h5 class="f-w-600"><i class="icofont icofont-listine-dots m-r-10 text-primary"></i>Tickets Activos en Tiempo Real</h5>
             </div>
-            <div class="card-block">
+            <div class="card-block p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped table-bordered">
-                        <tr>
-                            <th>Placa</th>
-                            <th>Cliente</th>
-                            <th>Espacio</th>
-                            <th>Entrada</th>
-                            <th>Estado</th>
-                        </tr>
-
-                        @if (Model != null && Model.Count > 0)
-                        {
-                            foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@(item.Vehiculo != null ? item.Vehiculo.Placa : "")</td>
-                                    <td>@(item.Cliente != null ? item.Cliente.Nombre + " " + item.Cliente.Apellido : "")</td>
-                                    <td>@(item.Espacio != null ? item.Espacio.Codigo : "")</td>
-                                    <td>@item.Entrada</td>
-                                    <td>
-                                        @if (item.Estado == "ACTIVO")
-                                        {
-                                            <span class="badge badge-success">ACTIVO</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge badge-danger">CERRADO</span>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        }
-                        else
-                        {
+                    <table class="table table-hover m-b-0">
+                        <thead>
                             <tr>
-                                <td colspan="5" class="text-center">No hay tickets activos.</td>
+                                <th>Placa</th>
+                                <th>Cliente</th>
+                                <th>Espacio</th>
+                                <th>Entrada</th>
+                                <th class="text-center">Estado</th>
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="f-w-600 text-primary">@(item.Vehiculo != null ? item.Vehiculo.Placa : "---")</td>
+                                        <td>@(item.Cliente != null ? item.Cliente.Nombre + " " + item.Cliente.Apellido : "General")</td>
+                                        <td><span class="text-muted"><i class="icofont icofont-location-pin"></i></span> @(item.Espacio != null ? item.Espacio.Codigo : "")</td>
+                                        <td>@item.Entrada</td>
+                                        <td class="text-center">
+                                            <span class="badge @(item.Estado == "ACTIVO" ? "badge-success" : "badge-danger")">
+                                                @item.Estado
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5" class="text-center p-4 text-muted">No hay tickets activos en este momento.</td></tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -114,32 +301,23 @@
     </div>
 
     <div class="col-xl-4 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Usuarios Activos</h5>
+        <div class="card shadow-sm">
+            <div class="card-header bg-white border-0 p-3">
+                <h5 class="f-w-600">Personal en Turno</h5>
             </div>
-            <div class="card-block">
-                <div class="row text-center">
+            <div class="card-block" style="max-height: 450px; overflow-y: auto;">
+                <div class="row">
                     @if (ViewBag.Usuarios != null)
                     {
                         foreach (var u in ViewBag.Usuarios)
                         {
                             string foto = string.IsNullOrEmpty(u.Foto) ? "default.png" : u.Foto;
-
-                            <div class="col-md-6 m-b-20">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <img src="@Url.Content("~/Content/uploads/usuarios/" + foto)"
-                                             class="img-radius"
-                                             style="width:70px; height:70px; object-fit:cover;" />
-
-                                        <h6 class="m-t-10">@u.Nombre @u.Apellido</h6>
-                                        <small class="text-muted">@u.Nombre</small>
-                                        <br />
-                                        @if (u.Rol != null)
-                                        {
-                                            <small class="text-muted">@u.Rol.Nombre</small>
-                                        }
+                            <div class="col-12 m-b-15">
+                                <div class="user-card d-flex align-items-center">
+                                    <img src="@Url.Content("~/Content/uploads/usuarios/" + foto)" class="img-radius m-r-15" style="width:50px; height:50px; object-fit:cover;" />
+                                    <div>
+                                        <h6 class="m-b-0 f-w-600">@u.Nombre @u.Apellido</h6>
+                                        <small class="text-primary">@(u.Rol != null ? u.Rol.Nombre : "Staff")</small>
                                     </div>
                                 </div>
                             </div>
@@ -152,20 +330,15 @@
 </div>
 
 <div class="row">
-    <div class="col-xl-6 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Últimos Pagos</h5>
-            </div>
-            <div class="card-block">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped table-bordered">
-                        <tr>
-                            <th>Factura</th>
-                            <th>Monto</th>
-                            <th>Fecha</th>
-                        </tr>
-
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white border-0 p-3"><h5><i class="icofont icofont-money m-r-10 text-success"></i>Últimos Pagos</h5></div>
+            <div class="card-block p-0">
+                <table class="table m-b-0">
+                    <thead class="bg-light">
+                        <tr><th>Folio</th><th>Monto</th><th>Fecha</th></tr>
+                    </thead>
+                    <tbody>
                         @if (ViewBag.Pagos != null)
                         {
                             foreach (var p in ViewBag.Pagos)
@@ -177,26 +350,21 @@
                                 </tr>
                             }
                         }
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-6 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Actividad Reciente</h5>
-            </div>
-            <div class="card-block">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped table-bordered">
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Acción</th>
-                            <th>Fecha</th>
-                        </tr>
-
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white border-0 p-3"><h5><i class="icofont icofont-history m-r-10 text-warning"></i>Actividad Reciente</h5></div>
+            <div class="card-block p-0">
+                <table class="table m-b-0">
+                    <thead class="bg-light">
+                        <tr><th>Usuario</th><th>Acción</th></tr>
+                    </thead>
+                    <tbody>
                         @if (ViewBag.Auditoria != null)
                         {
                             foreach (var a in ViewBag.Auditoria)
@@ -208,8 +376,8 @@
                                 </tr>
                             }
                         }
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

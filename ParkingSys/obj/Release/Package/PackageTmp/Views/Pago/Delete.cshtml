@@ -1,0 +1,52 @@
+﻿@model Entity.Facturacion.ePago
+
+@{
+    ViewBag.Title = "Eliminar Pago";
+}
+
+<h2>Eliminar Pago</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Confirmar eliminación</h5>
+    </div>
+    <div class="card-block">
+        @if (ViewBag.message != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.message
+            </div>
+        }
+
+        <dl class="dl-horizontal">
+            <dt>Factura</dt>
+            <dd>@(Model.Factura != null ? Model.Factura.Folio : "")</dd>
+
+            <dt>Método de Pago</dt>
+            <dd>@(Model.MetodoPago != null ? Model.MetodoPago.Nombre : "")</dd>
+
+            <dt>Monto</dt>
+            <dd>@Model.Monto</dd>
+
+            <dt>Fecha de Pago</dt>
+            <dd>@Model.FechaPago</dd>
+
+            <dt>Referencia</dt>
+            <dd>@Model.Referencia</dd>
+
+            <dt>Estado</dt>
+            <dd>@Model.Estado</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="text-right">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>

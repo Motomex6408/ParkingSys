@@ -1,0 +1,52 @@
+﻿@model Entity.Facturacion.eFactura
+
+@{
+    ViewBag.Title = "Eliminar Factura";
+}
+
+<h2>Eliminar Factura</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Confirmar eliminación</h5>
+    </div>
+    <div class="card-block">
+        @if (ViewBag.message != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.message
+            </div>
+        }
+
+        <dl class="dl-horizontal">
+            <dt>Folio</dt>
+            <dd>@Model.Folio</dd>
+
+            <dt>Serie</dt>
+            <dd>@Model.Serie</dd>
+
+            <dt>Cliente</dt>
+            <dd>@(Model.Cliente != null ? Model.Cliente.Nombre : "")</dd>
+
+            <dt>Subtotal</dt>
+            <dd>@Model.Subtotal</dd>
+
+            <dt>ISV</dt>
+            <dd>@Model.Impuesto</dd>
+
+            <dt>Total</dt>
+            <dd>@Model.Total</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="text-right">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>

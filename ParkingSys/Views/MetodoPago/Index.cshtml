@@ -1,33 +1,161 @@
 ﻿@model List<Entity.Facturacion.eMetodoPago>
 
 @{
-    ViewBag.Title = "Método de Pago";
+    ViewBag.Title = "Métodos de Pago";
 }
 
-<h2>Método de Pago</h2>
+<div class="container-fluid p-0">
+    <div class="card shadow-sm border-0" style="background: white !important; border-radius: 15px; margin-bottom: 20px;">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="page-header-title p-4 d-flex align-items-center">
+                    <div style="width:55px; height:55px; border-radius:12px; background-color: #01a9ac !important; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(1, 169, 172, 0.4);" class="mr-3">
+                        <i class="icofont icofont-bank-alt" style="font-size:26px; color: #ffffff !important;"></i>
+                    </div>
 
-<p>
-    @Html.ActionLink("Nuevo", "Create")
-</p>
+                    <div class="d-inline">
+                        <h4 class="f-w-600 m-b-0" style="color: #222 !important;">Métodos de Pago</h4>
+                        <p class="m-b-0" style="color: #555 !important;">Gestione las formas de pago aceptadas en el sistema</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-right p-4">
+                <a href="@Url.Action("Create")" class="btn btn-primary btn-round shadow-blue" style="background-color: #448aff !important; border:none; padding: 10px 25px; color: #ffffff !important; font-weight: 600;">
+                    <i class="icofont icofont-plus m-r-5"></i> Nuevo Método
+                </a>
+            </div>
+        </div>
+    </div>
 
-<table class="table">
-    <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Activo</th>
-        <th></th>
-    </tr>
+    <div class="card shadow-sm border-0" style="border-radius: 15px; overflow: hidden;">
+        <div class="card-block p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead style="background-color: #f8f9fa;">
+                        <tr>
+                            <th class="p-4 border-0 text-dark f-w-600">Nombre</th>
+                            <th class="p-4 border-0 text-dark f-w-600">Descripción</th>
+                            <th class="p-4 border-0 text-dark f-w-600 text-center">Estado</th>
+                            <th class="p-4 border-0 text-dark f-w-600 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="p-4 align-middle">
+                                    <span class="f-w-600" style="color: #444;">@item.Nombre</span>
+                                </td>
+                                <td class="p-4 align-middle text-muted">
+                                    @item.Descripcion
+                                </td>
+                                <td class="p-4 align-middle text-center">
+                                    @if (item.Activo)
+                                    {
+                                        <span class="label label-success" style="border-radius: 20px; padding: 5px 12px;">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-danger" style="border-radius: 20px; padding: 5px 12px;">Inactivo</span>
+                                    }
+                                </td>
+                                <td class="p-3 text-center">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="@Url.Action("Edit", new { id = item.Id })"
+                                           class="btn-action edit shadow-sm mr-2"
+                                           title="Editar">
+                                            <i class="icofont icofont-ui-edit">Editar</i>
+                                        </a>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Nombre</td>
-            <td>@item.Descripcion</td>
-            <td>@item.Activo</td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+                                        <a href="@Url.Action("Delete", new { id = item.Id })"
+                                           class="btn-action delete shadow-sm"
+                                           title="Eliminar">
+                                            <i class="icofont icofont-ui-delete">Eliminar</i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+    .f-w-600 {
+        font-weight: 600;
     }
-</table>
+
+    .btn-round {
+        border-radius: 50px !important;
+    }
+
+    .shadow-blue {
+        box-shadow: 0 4px 15px rgba(68, 138, 255, 0.4) !important;
+    }
+
+    .btn-action {
+        width: 90px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+
+        
+        .btn-action.edit {
+            background-color: #e8f0fe;
+            color: #448aff;
+        }
+
+            .btn-action.edit:hover {
+                background-color: #448aff;
+                color: white;
+                transform: scale(1.1);
+            }
+
+       
+        .btn-action.delete {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+
+            .btn-action.delete:hover {
+                background-color: #f44336;
+                color: white;
+                transform: scale(1.1);
+            }
+
+    
+    .mr-2 {
+        margin-right: 8px;
+    }
+
+    .align-middle {
+        vertical-align: middle !important;
+    }
+
+   
+    .label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .label-success {
+        background-color: #2ed8b6;
+        color: #fff;
+    }
+
+    .label-danger {
+        background-color: #ff5370;
+        color: #fff;
+    }
+</style>

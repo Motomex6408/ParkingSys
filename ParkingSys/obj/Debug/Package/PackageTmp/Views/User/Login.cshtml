@@ -9,7 +9,6 @@
 <html lang="es">
 <head>
     <title>Login - ParkingSys</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,9 +22,103 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/icofont/css/icofont.css")">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/font-awesome/css/font-awesome.min.css")">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/style.css")">
+
+    <style>
+        /* Logo Fijo en la parte superior - Versión Reforzada */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Aumentamos el padding para darle más altura al header */
+            padding: 25px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            text-align: center;
+            border-bottom: 2px solid #448aff; /* Una línea sutil del color de tu marca */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+            .fixed-header img {
+                /* Aquí controlas el tamaño del logo */
+                height: 150px;
+                width: auto;
+                /* Un suave efecto de entrada */
+                transition: transform 0.3s ease;
+            }
+
+                .fixed-header img:hover {
+                    transform: scale(1.05); /* El logo crece un poquito al pasar el mouse */
+                }
+
+        /* IMPORTANTE: Aumentamos el margen de la sección de login
+        para que el header más grande no tape el formulario */
+        .login-block {
+            padding-top: 160px;
+            margin: 0 auto;
+        }
+
+        /* Fondo Degradado Azul y Blanco */
+        body {
+            /* Degradado de azul profesional a blanco */
+            background: linear-gradient(180deg, #007bff 0%, #ffffff 100%);
+            background-attachment: fixed; /* Mantiene el fondo quieto al hacer scroll */
+            min-height: 100vh;
+            display: block; /* Cambiado de flex para permitir el scroll natural */
+            margin: 0;
+            overflow-y: auto; /* Permite desplazamiento vertical */
+        }
+
+        /* Logo Fijo Superior */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 0; /* Más espacio para el logo */
+            background: rgba(255, 255, 255, 0.9); /* Blanco con transparencia */
+            backdrop-filter: blur(10px);
+            z-index: 1050;
+            text-align: center;
+            border-bottom: 3px solid #0056b3;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+            .fixed-header img {
+                height: 90px; /* Logo más grande y visible */
+                width: auto;
+            }
+
+        /* Contenedor del Formulario con margen para el Header */
+        .login-block {
+            padding-top: 180px; /* Espacio extra para que el header no tape nada */
+            padding-bottom: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .auth-box.card {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: #fff;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        /* Estilo del botón para combinar con el azul */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 
-<body themebg-pattern="theme1">
+<body>
     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
@@ -34,22 +127,15 @@
                     <div class="gap-patch"><div class="circle"></div></div>
                     <div class="circle-clipper right"><div class="circle"></div></div>
                 </div>
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left"><div class="circle"></div></div>
-                    <div class="gap-patch"><div class="circle"></div></div>
-                    <div class="circle-clipper right"><div class="circle"></div></div>
-                </div>
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left"><div class="circle"></div></div>
-                    <div class="gap-patch"><div class="circle"></div></div>
-                    <div class="circle-clipper right"><div class="circle"></div></div>
-                </div>
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left"><div class="circle"></div></div>
-                    <div class="gap-patch"><div class="circle"></div></div>
-                    <div class="circle-clipper right"><div class="circle"></div></div>
-                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="fixed-header">
+        <div class="container">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="@Url.Content("~/assets/images/logo2.png")" alt="ParkingSys Logo" title="Volver al Inicio">
+            </a>
         </div>
     </div>
 
@@ -57,78 +143,64 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(m => m.toURL)
 
-                        <div class="text-center">
-                            <img src="@Url.Content("~/assets/images/logo.png")" alt="logo.png">
-                        </div>
-
                         <div class="auth-box card">
                             <div class="card-block">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-center">Iniciar Sesión</h3>
+                                        <h3 class="text-center font-weight-bold">Bienvenido</h3>
+                                        <p class="text-muted text-center">Inicia sesión en el sistema de parqueo</p>
                                     </div>
                                 </div>
 
                                 @if (ViewBag.message != null)
                                 {
-                                    <div class="alert alert-danger">
-                                        @ViewBag.message
+                                    <div class="alert alert-danger border-0 shadow-sm">
+                                        <i class="icofont icofont-error-box"></i> @ViewBag.message
                                     </div>
                                 }
 
                                 <div class="form-group form-primary">
-                                    @Html.TextBoxFor(m => m.Access, new
-                                        {
-                                            @class = "form-control",
-                                            autocomplete = "username"
-                                        })
+                                    @Html.TextBoxFor(m => m.Access, new { @class = "form-control", required = "required", autocomplete = "username" })
                                     <span class="form-bar"></span>
                                     <label class="float-label">Usuario o correo</label>
-                                    @Html.ValidationMessageFor(m => m.Access, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(m => m.Access, "", new { @class = "text-danger small" })
                                 </div>
 
-
                                 <div class="form-group form-primary">
-                                    @Html.PasswordFor(m => m.Password, new
-                               {
-                                   @class = "form-control",
-                                   autocomplete = "current-password"
-                               })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required", autocomplete = "current-password" })
                                     <span class="form-bar"></span>
-                                    <label class="float-label">Clave</label>
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    <label class="float-label">Contraseña</label>
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger small" })
                                 </div>
 
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">
-                                            Entrar
+                                            INGRESAR
                                         </button>
                                     </div>
                                 </div>
 
                                 <hr />
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">Sistema de Gestión de Parqueo</p>
+                                <div class="row align-items-center">
+                                    <div class="col-md-9">
+                                        <p class="text-inverse text-left m-b-0">ParkingSys v2.0</p>
                                         <p class="text-inverse text-left">
-                                            <a href="@Url.Action("Index", "Home")"><b>Ir al inicio</b></a>
+                                            <a href="@Url.Action("Index", "Home")" class="text-primary"><b>Volver al inicio</b></a>
                                         </p>
                                     </div>
-                                    <div class="col-md-2">
-                                        <img src="@Url.Content("~/assets/images/auth/Logo-small-bottom.png")" alt="small-logo.png">
+                                    <div class="col-md-3 text-right">
+                                        <img src="@Url.Content("~/assets/images/auth/Logo-small-bottom.png")" alt="small-logo.png" style="max-height: 30px;">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div>
@@ -139,7 +211,6 @@
     <script type="text/javascript" src="@Url.Content("~/assets/js/popper.js/popper.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/assets/js/bootstrap/js/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/assets/pages/waves/js/waves.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/assets/js/jquery-slimscroll/jquery.slimscroll.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/assets/js/common-pages.js")"></script>
 </body>
 </html>

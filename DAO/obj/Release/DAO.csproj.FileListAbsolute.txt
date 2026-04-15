@@ -24,3 +24,14 @@ C:\Computacion_En_La_Nube\ParkingSys\DAO\obj\Release\DAO.Migrations.Quinta.resou
 C:\Computacion_En_La_Nube\ParkingSys\DAO\obj\Release\DAO.csproj.GenerateResource.Cache
 C:\Computacion_En_La_Nube\ParkingSys\DAO\obj\Release\DAO.dll
 C:\Computacion_En_La_Nube\ParkingSys\DAO\obj\Release\DAO.pdb
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.dll
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.Host.SystemWeb.dll
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.Security.Cookies.dll
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.Security.dll
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Owin.dll
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.xml
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.Host.SystemWeb.xml
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.Security.xml
+C:\Computacion_En_La_Nube\ParkingSys\DAO\bin\Release\Microsoft.Owin.Security.Cookies.xml
+C:\Computacion_En_La_Nube\ParkingSys\DAO\obj\Release\DAO.Migrations.Sexta.resources
+C:\Computacion_En_La_Nube\ParkingSys\DAO\obj\Release\DAO.Migrations.Septima.resources

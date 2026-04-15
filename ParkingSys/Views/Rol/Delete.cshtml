@@ -4,28 +4,107 @@
     ViewBag.Title = "Eliminar Rol";
 }
 
-<h2>Eliminar Rol</h2>
+<div class="container-fluid p-0">
+    <div class="card shadow-sm border-0" style="background: #ffffff !important; border-radius: 15px; margin-bottom:20px;">
+        <div class="card-block p-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div style="width:55px; height:55px; border-radius:12px; background-color: #FF5370 !important; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 83, 112, 0.4);" class="mr-3">
+                        <i class="icofont icofont-ui-delete" style="font-size:26px; color: #ffffff !important;"></i>
+                    </div>
+                    <div>
+                        <h4 class="f-w-600 m-b-0" style="color: #222 !important;">Eliminar Rol</h4>
+                        <p class="m-b-0 text-danger f-w-600">¿Realmente desea eliminar este rol del sistema?</p>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index")" class="btn btn-primary btn-round shadow-sm" style="background-color: #448aff !important; border:none; padding: 10px 25px; color: #ffffff !important;">
+                    <i class="icofont icofont-arrow-left"></i> Volver al Listado
+                </a>
+            </div>
+        </div>
+    </div>
 
-<h4>¿Estás seguro que deseas eliminar esto?</h4>
+    <div class="card shadow-sm border-0" style="background: #ffffff !important; border-radius: 15px;">
+        <div class="card-block p-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="m-b-25 f-w-600" style="color: #222 !important; border-bottom: 2px solid #FF5370; display: inline-block; padding-bottom: 5px;">Información del Registro</h5>
+                </div>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Nombre</dt>
-        <dd>@Model.Nombre</dd>
+                <div class="col-md-12">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th class="text-dark" style="width: 150px;">Nombre del Rol:</th>
+                            <td class="text-muted" style="font-size: 1.1rem; font-weight: 500;">@Model.Nombre</td>
+                        </tr>
+                        <tr>
+                            <th class="text-dark">Descripción:</th>
+                            <td class="text-muted">@Model.Descripcion</td>
+                        </tr>
+                    </table>
+                </div>
 
-        <dt>Descripción</dt>
-        <dd>@Model.Descripcion</dd>
-    </dl>
+                <div class="col-md-12 m-t-20">
+                    <hr />
+                    <div class="alert alert-warning border-0" style="background-color: #fff9ec; color: #856404; border-radius: 10px;">
+                        <i class="icofont icofont-info-circle m-r-10"></i>
+                        <strong>Atención:</strong> Si elimina este rol, los usuarios asociados podrían perder sus permisos de acceso.
+                    </div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Id)
+                    <div class="text-right">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id)
 
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            <button type="submit" class="btn btn-danger btn-round shadow-danger px-5 py-2 text-white f-w-700">
+                                <i class="icofont icofont-trash m-r-10"></i> CONFIRMAR ELIMINACIÓN
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+    .btn-round {
+        border-radius: 50px !important;
     }
 
-    <br />
-    @Html.ActionLink("Cancelar", "Index")
-</div>
+    .btn-danger {
+        background-color: #FF5370 !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    .shadow-danger {
+        box-shadow: 0 4px 15px rgba(255, 83, 112, 0.4) !important;
+    }
+
+    .text-dark {
+        color: #222 !important;
+    }
+
+    .f-w-700 {
+        font-weight: 700;
+    }
+
+    .f-w-600 {
+        font-weight: 600;
+    }
+
+   
+    .table-borderless th {
+        padding: 15px 0;
+        font-size: 15px;
+    }
+
+    .table-borderless td {
+        padding: 15px 0;
+        font-size: 15px;
+    }
+</style>

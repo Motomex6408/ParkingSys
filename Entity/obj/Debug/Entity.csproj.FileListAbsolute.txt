@@ -15,4 +15,3 @@ C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Debug\es\Microsoft.AspNet.Identi
 C:\Computacion_En_La_Nube\ParkingSys\Entity\bin\Debug\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
 C:\Computacion_En_La_Nube\ParkingSys\Entity\obj\Debug\Entity.dll
 C:\Computacion_En_La_Nube\ParkingSys\Entity\obj\Debug\Entity.pdb
-C:\Computacion_En_La_Nube\ParkingSys\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
